@@ -11,7 +11,7 @@ def directionChoose(a,b):    #定义函数，实现图片下载
     heading = a
     picture1caption.text = "方向{0}度".format(heading)
     #调用百度街景API,具体参数见http://lbsyun.baidu.com/index.php?title=viewstatic/api
-    url = "http://api.map.baidu.com/panorama/v2?ak=133d5d0ef4fcc60f7ff63a76f5b538ac&width=1024&height=512&location={0},{1}&heading={2}&pitch=15&fov=180 ".format(picLat,picLong,heading)
+    url = "http://api.map.baidu.com/panorama/v2?ak=<API>&width=1024&height=512&location={0},{1}&heading={2}&pitch=15&fov=180 ".format(picLat,picLong,heading)
     picturePath = os.path.join(path,"%s1.jpg" % row[2])
     urllib.urlretrieve(url,picturePath)
     picture1.sourceImage = picturePath
@@ -21,7 +21,7 @@ def directionChoose(a,b):    #定义函数，实现图片下载
     picture2caption = arcpy.mapping.ListLayoutElements(mxd,"TEXT_ELEMENT","picture2caption")[0]
     heading = b
     picture2caption.text = "方向{0}度".format(heading)
-    url = "http://api.map.baidu.com/panorama/v2?ak=133d5d0ef4fcc60f7ff63a76f5b538ac&width=1024&height=512&location={0},{1}&heading={2}&pitch=15&fov=180 ".format(picLat,picLong,heading)
+    url = "http://api.map.baidu.com/panorama/v2?ak=<API>&width=1024&height=512&location={0},{1}&heading={2}&pitch=15&fov=180 ".format(picLat,picLong,heading)
     picturePath = os.path.join(path,"%s2.jpg" % row[2])
     urllib.urlretrieve(url,picturePath)
     picture2.sourceImage = picturePath
