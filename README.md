@@ -1,3 +1,3 @@
 # Tutorial
 baidu_poi
-a code
+a code to download baidu place API
