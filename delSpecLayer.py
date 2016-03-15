@@ -8,3 +8,16 @@ for obj in lys.Modelspace:
         obj.delete()
 l.delete()
 lys.regen
+
+
+from pyautocad import Autocad, APoint
+
+acad = Autocad()
+doc = acad.Application.Documents.Open(r'C:\Users\Administrator\Desktop\DX2\510.50-500.50.dwg')
+l = doc.Layers("SUB")
+doc.ActiveLayer = doc.Layers("0")
+for obj in doc.Modelspace:
+    if obj.Layer == "SUB":
+        obj.delete()
+l.delete()
+doc.regen
