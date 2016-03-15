@@ -9,7 +9,7 @@ for obj in lys.Modelspace:
 l.delete()
 lys.regen
 
-
+#-----------------------------------------------------------------
 from pyautocad import Autocad, APoint
 
 acad = Autocad()
