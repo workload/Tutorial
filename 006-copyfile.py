@@ -17,10 +17,18 @@ def checklst():
     return lst
 
 if __name__ == '__main__':
-    outdir = "G:/choose"
-    rootdir = "G:/1000"        
-    for fls in getFileList(rootdir):
+    outdir1 = "G:/choose1000"
+    outdir2 = "G:/choose500"
+    rootdir1 = "G:/1000"  
+    rootdir2 = "G:/500" 
+    for fls in getFileList(rootdir1):
         if fls in checklst():
-            shutil.copyfile(rootdir + '/' + fls, outdir + '/' + fls)
+            shutil.copyfile(rootdir1 + '/' + fls, outdir1 + '/' + fls)
             print "copy " + fls + " successful"
-    print "copy finished!"
+    print "1000比例尺 copy finished!"
+    
+    for fls in getFileList(rootdir2):
+        if fls in checklst():
+            shutil.copyfile(rootdir2 + '/' + fls, outdir2 + '/' + fls)
+            print "copy " + fls + " successful"
+    print "500比例尺 copy finished!"
