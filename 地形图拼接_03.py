@@ -25,6 +25,7 @@ class select_num(object):
         arcpy.FeatureToPoint_management(inFeatures2, outFeatureClass)
     
         where_clause = " RefName LIKE '5%' OR RefName LIKE '3%'"
+        # 筛选符合要求的编号，其都以5和3开头
         select_fc = os.path.join(workspce, creat_gdb, self.select_anno)
         arcpy.Select_analysis(os.path.join(workspce, creat_gdb, self.point_name), select_fc , where_clause)
 
@@ -39,12 +40,12 @@ class select_num(object):
 
 if __name__ == "__main__":   
     print "开始处理，请稍等..."
-    workspce = r"G:\2016tuto"
-    cad = "总拼接表orh.dwg"
-    creat_gdb = "dx.gdb"
-    area_use = "tqfw"
-    gdb2 = 'dxtpj.gdb'
-    cad_use = ["Polyline", "annotation"]
+    workspce = r"G:\2016tuto"   # 工作空间
+    cad = "总拼接表orh.dwg"      # 地形图拼接表
+    creat_gdb = "dx.gdb"        # 创建用于存储临时文件的数据库空间 
+    area_use = "tqfw"           # 这里单个区域的要素类，多个加for循环
+    gdb2 = 'dxtpj.gdb'                    
+    cad_use = ["Polyline", "annotation"]      # 地形图文件上图幅编号一般存在annotation中
     area_fc = os.path.join(workspce,gdb2,area_use)
     arcpy.CreateFileGDB_management(workspce, creat_gdb)
     
@@ -52,11 +53,11 @@ if __name__ == "__main__":
     process = select_num('a1','a2','a3','a4','a5')  
     process.polygon()
     
-    fc = os.path.join(workspce, creat_gdb, 'a5')
+    fc = os.path.join(workspce, creat_gdb, 'a5')    
     class_field = 'RefName'
     with arcpy.da.SearchCursor(fc, class_field) as cursor:
         for row in cursor:
-            doc = open(os.path.join(workspce, 'map_csv.csv'),'a') 
+            doc = open(os.path.join(workspce, 'map_csv.csv'),'a')  # 如果多个文件，
             if row[0] is not None:          
                 doc.write(row[0])
                 doc.write('\n')
